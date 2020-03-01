@@ -1,4 +1,3 @@
-const wdio = require('webdriverio')
 const selectById = require('../helpers/selectById')
 const assert = require('assert')
 

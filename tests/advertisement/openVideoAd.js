@@ -1,5 +1,5 @@
 /**
- * Test Open Ad
+ * Test Open Video Ad
  * - Ketika User mengklik tombl open pada ad detail,
  * - User akan mendapat reward dan wallet balance bertambah.
  * 
@@ -28,7 +28,7 @@ const setup = async () => {
   return client
 }
 
-const openAd = async() => {
+const openVideoAd = async() => {
   const client = await setup()
 
   // Clear Update Toast
@@ -39,6 +39,10 @@ const openAd = async() => {
   walletBalanceBeforeOpenAd = await walletBalanceBeforeOpenAd.getText()
   walletBalanceBeforeOpenAd = walletBalanceBeforeOpenAd.match(/(\d+.?\d+)/)[0]
 
+  // Go to Video Fragment
+  const videoAction = await selectById(client, 'id.freemo:id/action_video')
+  await videoAction.click()
+
   // Select an Advertisement
   const adRecyclerView = await selectById(client, 'id.freemo:id/rv_client_ads')
   const adCard = await adRecyclerView.$("android.widget.LinearLayout")
@@ -46,7 +50,7 @@ const openAd = async() => {
 
   // Make sure we're in ad detail activity
   const currentActivity = client.getCurrentActivity()
-  assert(currentActivity, '.core.home.AdsDetailActivity')
+  assert(currentActivity, '.core.home.VideoAdsDetailActivity')
 
   // Open an Ad
   const openBtn = await selectById(client, 'id.freemo:id/layout_see')
@@ -93,4 +97,4 @@ const openAd = async() => {
   client.deleteSession()
 }
 
-module.exports = openAd
+module.exports = openVideoAd
