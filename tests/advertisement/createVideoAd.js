@@ -11,7 +11,7 @@ const setup = async () => {
   return client
 }
 
-const createImageAd = async () => {
+const createVideoAd = async () => {
   const client = await setup()
 
   // Clear Update Toast
@@ -26,18 +26,17 @@ const createImageAd = async () => {
   const addFab = await selectById(client, 'id.freemo:id/fab_add')
   await addFab.click()
 
-  const addImageAdLayout = await selectById(client, 'id.freemo:id/layout_image_ads')
-  await addImageAdLayout.click()
-
+  const addVideoAdLayout = await selectById(client, 'id.freemo:id/layout_video_ads')
+  await addVideoAdLayout.click()
 
   /**
    * Step 1
    */
   const adTitleInput = await selectById(client, 'id.freemo:id/et_ads_title')
-  await adTitleInput.addValue('test-image-ad')
+  await adTitleInput.addValue('test-video-ad')
 
   const adDescInput = await selectById(client, 'id.freemo:id/et_ads_description')
-  await adDescInput.addValue('test-image-add Description')
+  await adDescInput.addValue('test-video-add Description')
 
   // Scroll down
   await client.touchAction([
@@ -129,26 +128,13 @@ const createImageAd = async () => {
   /**
    * Step 3
    */
-  // Ad Image
-  const adImageInput = await selectById(client, 'id.freemo:id/iv_photo_image')
-  await adImageInput.click()
-  let resolvers = await selectById(client, 'android:id/resolver_list')
-  let innerLayout = await resolvers.$('android.widget.LinearLayout')
-  let photo = await innerLayout.$('android.widget.LinearLayout')
-  await photo.click()
-  await sleep(3000)
+  // Insert video url
+  const videoAdLinkInput = await selectById(client, 'id.freemo:id/et_video_ads_link')
+  await videoAdLinkInput.addValue('https://www.youtube.com/watch?v=ZLyGbQbCQrM')
 
-  let image = await client.$(`android=new UiSelector().text("Image")`)
-  await image.click()
-  await sleep(3000)
-
-  let imagesRecyclerView = await selectById(client, 'com.google.android.apps.photos:id/recycler_view')
-  image = await imagesRecyclerView.$(`android=new UiSelector().className("android.view.ViewGroup").instance(1)`)
-  await image.click()
-
-  // Lock Screen Image
-  const lockScreenImageInput = await selectById(client, 'id.freemo:id/iv_photo_lockscreen')
-  await lockScreenImageInput.click()
+  // Upload image for video logo
+  const videoLogoInput = await selectById(client, 'id.freemo:id/iv_photo_logo')
+  await videoLogoInput.click()
   resolvers = await selectById(client, 'android:id/resolver_list')
   innerLayout = await resolvers.$('android.widget.LinearLayout')
   photo = await innerLayout.$('android.widget.LinearLayout')
@@ -163,31 +149,7 @@ const createImageAd = async () => {
   image = await imagesRecyclerView.$(`android=new UiSelector().className("android.view.ViewGroup").instance(1)`)
   await image.click()
 
-  // Ad Logo Image
-  // Scroll down
-  await client.touchAction([
-    { action: 'press', x: 466, y: 1300 },
-    { action: 'moveTo', x: 460, y: 304 },
-    'release'
-  ])
-  await sleep(3000)
-
-  const logoImageInput = await selectById(client, 'id.freemo:id/iv_photo_logo')
-  await logoImageInput.click()
-  resolvers = await selectById(client, 'android:id/resolver_list')
-  innerLayout = await resolvers.$('android.widget.LinearLayout')
-  photo = await innerLayout.$('android.widget.LinearLayout')
-  await photo.click()
-  await sleep(3000)
-
-  image = await client.$(`android=new UiSelector().text("Image")`)
-  await image.click()
-  await sleep(3000)
-
-  imagesRecyclerView = await selectById(client, 'com.google.android.apps.photos:id/recycler_view')
-  image = await imagesRecyclerView.$(`android=new UiSelector().className("android.view.ViewGroup").instance(1)`)
-  await image.click()
-
+  // Click save button
   // Save
   const btnSave = await selectById(client, 'id.freemo:id/btn_save')
   await btnSave.click()
@@ -206,4 +168,4 @@ const createImageAd = async () => {
   client.deleteSession()
 }
 
-module.exports = createImageAd
+module.exports = createVideoAd
