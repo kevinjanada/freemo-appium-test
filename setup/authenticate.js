@@ -1,4 +1,5 @@
 const selectById = require('../helpers/selectById')
+const sleep = require('../helpers/sleep')
 const assert = require('assert')
 
 const authenticationTest = async (client) => {
@@ -15,6 +16,8 @@ const authenticationTest = async (client) => {
 
   const continueBtn = await selectById(client, `id.freemo:id/btn_continue`)
   await continueBtn.click()
+
+  sleep(1000)
 
   const startBtn = await selectById(client, `id.freemo:id/btn_start`)
   await startBtn.click()

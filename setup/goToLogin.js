@@ -1,6 +1,7 @@
 const wdio = require('webdriverio')
 const config =  require('../config')
 const selectById = require('../helpers/selectById')
+const sleep = require('../helpers/sleep')
 
 const goToLogin = async () => {
   const client = await wdio.remote(config)
@@ -18,9 +19,7 @@ const goToLogin = async () => {
   }
 
   console.log('Now in onboarding activity ======== \n')
-  setTimeout(() => {
-    return
-  }, 3000)
+  sleep(1000)
 
   // const button = await client.$("android.widget.Button")
   const selector = `new UiSelector().resourceId("id.freemo:id/btn_continue")`
