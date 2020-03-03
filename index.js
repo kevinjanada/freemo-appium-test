@@ -4,6 +4,7 @@ const createImageAd = require('./tests/advertisement/createImageAd')
 const createVideoAd = require('./tests/advertisement/createVideoAd')
 const submitSurvey = require('./tests/survey/submitSurvey')
 const editProfile = require('./tests/profile/editProfile')
+const changeLanguage = require('./tests/profile/changeLanguage')
 
 async function main () {
   // await openAd()
@@ -11,7 +12,8 @@ async function main () {
   // await createImageAd()
   // await createVideoAd()
   // await submitSurvey()
-  await editProfile()
+  //await editProfile()
+  await changeLanguage()
 }
 
 main()
