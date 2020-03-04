@@ -68,6 +68,7 @@ const openAd = async(USER_PHONE) => {
 
   // Go back to Home Page
   await client.back()
+  await sleep(5000)
   await client.back()
 
   // Wait for update toast to show, and then clear it
