@@ -5,14 +5,17 @@ const sleep = require('../../helpers/sleep')
 const clearUpdateToast = require('../../helpers/clearUpdateToast')
 const assert = require('assert')
 
-const setup = async () => {
+const setup = async (USER_PHONE) => {
   let client = await goToLogin()
-  client = await authenticate(client)
+  client = await authenticate(client, USER_PHONE)
   return client
 }
 
-const editProfile = async () => {
-  const client = await setup()
+const editProfile = async (
+  USER_PHONE,
+  { TEST_USERNAME, TEST_FULLNAME, TEST_EMAIL, TEST_ADDRESS }
+) => {
+  const client = await setup(USER_PHONE)
 
   // Clear Update Toast
   await clearUpdateToast(client)
@@ -24,13 +27,13 @@ const editProfile = async () => {
   await editProfile.click()
 
   const usernameInput = await selectById(client, 'id.freemo:id/et_username')
-  await usernameInput.addValue('test-username')
+  await usernameInput.addValue(TEST_USERNAME)
     
   // const mobileNumberInput = await selectById(client, 'id.freemo:id/et_mobile_number')
   // await mobileNumberInput.addValue('087887240444')
 
   const fullNameInput = await selectById(client, 'id.freemo:id/et_fullname')
-  await fullNameInput.addValue('test fullname')
+  await fullNameInput.addValue(TEST_FULLNAME)
 
   // Scroll down 3 times
   await client.touchAction([
@@ -54,7 +57,7 @@ const editProfile = async () => {
 
   // Email
   const emailInput = await selectById(client, 'id.freemo:id/et_email')
-  await emailInput.addValue('test-email-input@gmail.com')
+  await emailInput.addValue(TEST_EMAIL)
 
 
   // Birth Date ---------------------
@@ -102,7 +105,7 @@ const editProfile = async () => {
 
   // Address
   const addressInput = await selectById(client, 'id.freemo:id/et_address')
-  await addressInput.addValue('test address no. 3')
+  await addressInput.addValue(TEST_ADDRESS)
 
   // City
   const citySelect = await selectById(client, 'id.freemo:id/et_city')

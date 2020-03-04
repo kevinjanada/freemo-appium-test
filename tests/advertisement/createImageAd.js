@@ -5,14 +5,17 @@ const sleep = require('../../helpers/sleep')
 const clearUpdateToast = require('../../helpers/clearUpdateToast')
 const assert = require('assert')
 
-const setup = async () => {
+const setup = async (USER_PHONE) => {
   let client = await goToLogin()
-  client = await authenticate(client)
+  client = await authenticate(client, USER_PHONE)
   return client
 }
 
-const createImageAd = async () => {
-  const client = await setup()
+const createImageAd = async (
+  USER_PHONE,
+  {TEST_TITLE, TEST_DESCRIPTION, TEST_URL}
+) => {
+  const client = await setup(USER_PHONE)
 
   // Clear Update Toast
   await clearUpdateToast(client)
@@ -34,10 +37,10 @@ const createImageAd = async () => {
    * Step 1
    */
   const adTitleInput = await selectById(client, 'id.freemo:id/et_ads_title')
-  await adTitleInput.addValue('test-image-ad')
+  await adTitleInput.addValue(TEST_TITLE)
 
   const adDescInput = await selectById(client, 'id.freemo:id/et_ads_description')
-  await adDescInput.addValue('test-image-add Description')
+  await adDescInput.addValue(TEST_DESCRIPTION)
 
   // Scroll down
   await client.touchAction([
@@ -61,7 +64,7 @@ const createImageAd = async () => {
   }
 
   const adURLInput = await selectById(client, 'id.freemo:id/et_ads_url')
-  await adURLInput.addValue('http://youtube.com')
+  await adURLInput.addValue(TEST_URL)
 
   let btnContinue = await selectById(client, 'id.freemo:id/btn_continue')
   await btnContinue.click()

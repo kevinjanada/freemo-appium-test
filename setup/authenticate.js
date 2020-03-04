@@ -2,9 +2,10 @@ const selectById = require('../helpers/selectById')
 const sleep = require('../helpers/sleep')
 const assert = require('assert')
 
-const authenticationTest = async (client) => {
+
+const authenticationTest = async (client, MOBILE_PHONE) => {
   const mobilePhoneInput = await selectById(client, 'id.freemo:id/et_mobile_phone')
-  mobilePhoneInput.addValue('87887240444')
+  mobilePhoneInput.addValue(MOBILE_PHONE)
 
   const signinBtn = await selectById(client, 'id.freemo:id/btn_signin')
   await signinBtn.click()

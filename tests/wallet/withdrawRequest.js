@@ -11,17 +11,14 @@ const sleep = require('../../helpers/sleep')
 const clearUpdateToast = require('../../helpers/clearUpdateToast')
 const assert = require('assert')
 
-const setup = async () => {
+const setup = async (USER_PHONE) => {
   let client = await goToLogin()
-  client = await authenticate(client)
+  client = await authenticate(client, USER_PHONE)
   return client
 }
 
-const TEST_ACCOUNT_NAME = 'test accountname'
-const TEST_ACCOUNT_NUMBER = '080808080808'
-
-const withdrawRequest = async () => {
-  const client = await setup()
+const withdrawRequest = async (USER_PHONE, TEST_ACCOUNT_NAME, TEST_ACCOUNT_NUMBER) => {
+  const client = await setup(USER_PHONE)
 
   // Clear Update Toast
   await clearUpdateToast(client)
@@ -81,7 +78,10 @@ const withdrawRequest = async () => {
   try {
     const latestWithdrawRequest = await client.$(`android=new UiSelector().text("Bank Bca ${TEST_ACCOUNT_NUMBER} ${TEST_ACCOUNT_NAME}")`)
     assert(latestWithdrawRequest != null)
+    console.log("Test Success")
   } catch(ex) {
+    console.log("Test Failed")
+    console.log("=============================")
     console.log(ex)
   }
 

@@ -9,14 +9,14 @@ const sleep = require('../../helpers/sleep')
 const clearUpdateToast = require('../../helpers/clearUpdateToast')
 const assert = require('assert')
 
-const setup = async () => {
+const setup = async (USER_PHONE) => {
   let client = await goToLogin()
-  client = await authenticate(client)
+  client = await authenticate(client, USER_PHONE)
   return client
 }
 
-const createImageAd = async () => {
-  const client = await setup()
+const changeLanguage = async (USER_PHONE) => {
+  const client = await setup(USER_PHONE)
 
   // Clear Update Toast
   await clearUpdateToast(client)
@@ -37,6 +37,8 @@ const createImageAd = async () => {
   } catch(ex) {
     console.log(ex)
   }
+
+  client.deleteSession()
 }
 
-module.exports = createImageAd
+module.exports = changeLanguage

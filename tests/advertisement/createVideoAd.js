@@ -5,14 +5,17 @@ const sleep = require('../../helpers/sleep')
 const clearUpdateToast = require('../../helpers/clearUpdateToast')
 const assert = require('assert')
 
-const setup = async () => {
+const setup = async (USER_PHONE) => {
   let client = await goToLogin()
-  client = await authenticate(client)
+  client = await authenticate(client, USER_PHONE)
   return client
 }
 
-const createVideoAd = async () => {
-  const client = await setup()
+const createVideoAd = async (
+  USER_PHONE,
+  {TEST_TITLE, TEST_DESCRIPTION, TEST_VID_URL}
+) => {
+  const client = await setup(USER_PHONE)
 
   // Clear Update Toast
   await clearUpdateToast(client)
@@ -33,10 +36,10 @@ const createVideoAd = async () => {
    * Step 1
    */
   const adTitleInput = await selectById(client, 'id.freemo:id/et_ads_title')
-  await adTitleInput.addValue('test-video-ad')
+  await adTitleInput.addValue(TEST_TITLE)
 
   const adDescInput = await selectById(client, 'id.freemo:id/et_ads_description')
-  await adDescInput.addValue('test-video-add Description')
+  await adDescInput.addValue(TEST_DESCRIPTION)
 
   // Scroll down
   await client.touchAction([
@@ -60,7 +63,7 @@ const createVideoAd = async () => {
   }
 
   const adURLInput = await selectById(client, 'id.freemo:id/et_ads_url')
-  await adURLInput.addValue('http://youtube.com')
+  await adURLInput.addValue(TEST_VID_URL)
 
   let btnContinue = await selectById(client, 'id.freemo:id/btn_continue')
   await btnContinue.click()
@@ -130,7 +133,7 @@ const createVideoAd = async () => {
    */
   // Insert video url
   const videoAdLinkInput = await selectById(client, 'id.freemo:id/et_video_ads_link')
-  await videoAdLinkInput.addValue('https://www.youtube.com/watch?v=ZLyGbQbCQrM')
+  await videoAdLinkInput.addValue(TEST_VID_URL)
 
   // Upload image for video logo
   const videoLogoInput = await selectById(client, 'id.freemo:id/iv_photo_logo')
