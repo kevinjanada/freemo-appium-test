@@ -1,3 +1,9 @@
+/**
+ * Authentication Test
+ * 
+ * Servis OTP masih blum aktif,
+ * Verifikasi OTP di bypass di backend.
+ */
 const selectById = require('../helpers/selectById')
 const sleep = require('../helpers/sleep')
 const assert = require('assert')
@@ -26,6 +32,7 @@ const authenticationTest = async (client, MOBILE_PHONE) => {
   const currentActivity = await client.getCurrentActivity()
   assert.equal(currentActivity, '.core.main.MainActivity')
 
+  console.log('Authentication Success =================================')
   return client
 }
 

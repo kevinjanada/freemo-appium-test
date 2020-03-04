@@ -118,8 +118,9 @@ const submitSurvey = async(USER_PHONE) => {
   try {
     const activity = await client.getCurrentActivity()
     assert.equal(activity, '.core.wallet.WalletActivity')
+    console.log('Survey Submit Test Success ============== ')
   } catch (ex) {
-    console.log('Survey Submit Failed')
+    console.log('Survey Submit Failed ====================')
   }
 
   await client.deleteSession()

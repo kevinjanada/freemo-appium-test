@@ -202,8 +202,9 @@ const createImageAd = async (
     const successMessage = await selectById(client, 'android:id/message')
     const text = await successMessage.getText()
     assert.equal(text, 'Success')
+    console.log('Create Image Ad Test Success ====================')
   } catch (ex) {
-    console.log('Create Image Test Success Pop Up did not show')
+    console.log('Create Image Ad Test failed ====================')
   }
 
   client.deleteSession()

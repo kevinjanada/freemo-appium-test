@@ -83,7 +83,7 @@ const TEST_ACCOUNT_NUMBER = '080808080808'
 
 async function main () {
   await openAd(USER_PHONE)
-  await openVideoAd(USER_PHONE)
+  // await openVideoAd(USER_PHONE)
   // await createImageAd(USER_PHONE, CREATE_IMAGE_AD_PARAMS)
   // await createVideoAd(USER_PHONE, CREATE_VIDEO_AD_PARAMS)
   // await submitSurvey(USER_PHONE)

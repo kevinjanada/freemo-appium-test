@@ -89,8 +89,11 @@ const openVideoAd = async(USER_PHONE) => {
   const isBalanceIncrease = balanceBefore < balanceAfter
   try {
     assert.equal(isBalanceIncrease, true)
+    console.log('Open Video Ad Test Success =====')
   } catch (ex) {
     console.log('Assertion Failed')
+    console.log('Test Failed ====== Balance did not increase')
+    console.log('Has the ad been opened in the last 1 hour?')
     console.log(ex)
   }
 

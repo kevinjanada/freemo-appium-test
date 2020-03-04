@@ -78,9 +78,9 @@ const withdrawRequest = async (USER_PHONE, TEST_ACCOUNT_NAME, TEST_ACCOUNT_NUMBE
   try {
     const latestWithdrawRequest = await client.$(`android=new UiSelector().text("Bank Bca ${TEST_ACCOUNT_NUMBER} ${TEST_ACCOUNT_NAME}")`)
     assert(latestWithdrawRequest != null)
-    console.log("Test Success")
+    console.log("Withdraw Request Test Success =======================")
   } catch(ex) {
-    console.log("Test Failed")
+    console.log("Withdraw Request Test Failed ========================")
     console.log("=============================")
     console.log(ex)
   }

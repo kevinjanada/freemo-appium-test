@@ -135,8 +135,10 @@ const editProfile = async (
   // Check if alert not Unprocessable
   try {
     assert.notEqual(alertText, 'Unprocessable Entity')
+    console.log('Edit Profile Test Success =================')
   } catch (ex) {
     console.log(ex)
+    console.log('Edit Profile Test Failed ===================')
   }
 
   client.deleteSession()

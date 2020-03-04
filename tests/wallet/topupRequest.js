@@ -159,9 +159,9 @@ const topupRequest = async (USER_PHONE, TOPUP_TYPE, TEST_ACCOUNT_NAME, TEST_ACCO
     assert.equal(lastTopupValueText, TOPUP_TYPE.price)
     assert.equal(lastTopupInvoiceText, topupInvoiceText)
     assert.equal(lastTopupStatusText, 'PENDING')
-    console.log("Test Success")
+    console.log("Topup Request Test Success ====================")
   } catch (ex) {
-    console.log("Test Failed")
+    console.log("Topup Request Test Failed =====================")
     console.log("=============================")
     console.log(ex)
   }

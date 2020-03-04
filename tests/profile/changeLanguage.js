@@ -34,8 +34,10 @@ const changeLanguage = async (USER_PHONE) => {
   
   try {
     assert.equal(languageSelectText, "English")
+    console.log('Change Language Test Success ================')
   } catch(ex) {
     console.log(ex)
+    console.log('Change Language Test Failed ================')
   }
 
   client.deleteSession()

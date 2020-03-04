@@ -164,8 +164,9 @@ const createVideoAd = async (
     const successMessage = await selectById(client, 'android:id/message')
     const text = await successMessage.getText()
     assert.equal(text, 'Success')
+    console.log('Create Video Ad test success =====================')
   } catch (ex) {
-    console.log('Create Image Test Success Pop Up did not show')
+    console.log('Create Video Ad test failed =====================')
   }
 
   client.deleteSession()
