@@ -21,6 +21,9 @@ const selectById = require('../../helpers/selectById')
 const sleep = require('../../helpers/sleep')
 const clearUpdateToast = require('../../helpers/clearUpdateToast')
 const assert = require('assert')
+const testSummary = require('../../helpers/testSummary')
+
+const TEST_CASE = 'open_video_ad'
 
 const setup = async (USER_PHONE) => {
   let client = await goToLogin()
@@ -30,74 +33,79 @@ const setup = async (USER_PHONE) => {
 
 const openVideoAd = async(USER_PHONE) => {
   const client = await setup(USER_PHONE)
-
-  // Clear Update Toast
-  await clearUpdateToast(client)
-
-  // Get Wallet balance before open ad
-  let walletBalanceBeforeOpenAd = await selectById(client, 'id.freemo:id/tv_money')
-  walletBalanceBeforeOpenAd = await walletBalanceBeforeOpenAd.getText()
-  walletBalanceBeforeOpenAd = walletBalanceBeforeOpenAd.match(/(\d+.?\d+)/)[0]
-
-  // Go to Video Fragment
-  const videoAction = await selectById(client, 'id.freemo:id/action_video')
-  await videoAction.click()
-
-  // Select an Advertisement
-  const adRecyclerView = await selectById(client, 'id.freemo:id/rv_client_ads')
-  const adCard = await adRecyclerView.$("android.widget.LinearLayout")
-  await adCard.click()
-
-  // Make sure we're in ad detail activity
-  const currentActivity = client.getCurrentActivity()
-  assert(currentActivity, '.core.home.VideoAdsDetailActivity')
-
-  // Open an Ad
-  const openBtn = await selectById(client, 'id.freemo:id/layout_see')
-  await openBtn.click()
-
-  // Open Ad using chrome
-  await sleep(3000)
-  const intentChooser = await selectById(client, 'android:id/resolver_list')
-  const layoutInner = await intentChooser.$("android.widget.LinearLayout")
-  const chromeIntent = await layoutInner.$("android.widget.LinearLayout")
-  await chromeIntent.click()
-
-  // Check if chrome is opened
-  const browserActivity = await client.getCurrentActivity()
-  assert(browserActivity, 'com.google.android.apps.chrome.IntentDispatcher')
-
-  // Wait for notifications to arrive
-  await sleep(5000)
-
-  // Go back to Home Page
-  await client.back()
-  await client.back()
-
-  // Wait for update toast to show, and then clear it
-  await sleep(10000)
-  await clearUpdateToast(client)
-
-  // Get wallet balance after opening ad
-  let walletBalanceAfterOpenAd = await selectById(client, 'id.freemo:id/tv_money')
-  walletBalanceAfterOpenAd =  await walletBalanceAfterOpenAd.getText()
-  walletBalanceAfterOpenAd = walletBalanceAfterOpenAd.match(/(\d+.?\d+)/)[0]
-
-  // Assert wallet balance increased
-  const balanceBefore = parseFloat(walletBalanceBeforeOpenAd)
-  const balanceAfter = parseFloat(walletBalanceAfterOpenAd)
-  const isBalanceIncrease = balanceBefore < balanceAfter
   try {
-    assert.equal(isBalanceIncrease, true)
-    console.log('Open Video Ad Test Success =====')
-  } catch (ex) {
-    console.log('Assertion Failed')
-    console.log('Test Failed ====== Balance did not increase')
-    console.log('Has the ad been opened in the last 1 hour?')
-    console.log(ex)
-  }
+    // Clear Update Toast
+    await clearUpdateToast(client)
 
-  client.deleteSession()
+    // Get Wallet balance before open ad
+    let walletBalanceBeforeOpenAd = await selectById(client, 'id.freemo:id/tv_money')
+    walletBalanceBeforeOpenAd = await walletBalanceBeforeOpenAd.getText()
+    walletBalanceBeforeOpenAd = walletBalanceBeforeOpenAd.match(/(\d+.?\d+)/)[0]
+
+    // Go to Video Fragment
+    const videoAction = await selectById(client, 'id.freemo:id/action_video')
+    await videoAction.click()
+
+    // Select an Advertisement
+    const adRecyclerView = await selectById(client, 'id.freemo:id/rv_client_ads')
+    const adCard = await adRecyclerView.$("android.widget.LinearLayout")
+    await adCard.click()
+
+    // Make sure we're in ad detail activity
+    const currentActivity = client.getCurrentActivity()
+    assert(currentActivity, '.core.home.VideoAdsDetailActivity')
+
+    // Open an Ad
+    const openBtn = await selectById(client, 'id.freemo:id/layout_see')
+    await openBtn.click()
+
+    // Open Ad using chrome
+    await sleep(3000)
+    const intentChooser = await selectById(client, 'android:id/resolver_list')
+    const layoutInner = await intentChooser.$("android.widget.LinearLayout")
+    const chromeIntent = await layoutInner.$("android.widget.LinearLayout")
+    await chromeIntent.click()
+
+    // Check if chrome is opened
+    const browserActivity = await client.getCurrentActivity()
+    assert(browserActivity, 'com.google.android.apps.chrome.IntentDispatcher')
+
+    // Wait for notifications to arrive
+    await sleep(5000)
+
+    // Go back to Home Page
+    await client.back()
+    await client.back()
+
+    // Wait for update toast to show, and then clear it
+    await sleep(10000)
+    await clearUpdateToast(client)
+
+    // Get wallet balance after opening ad
+    let walletBalanceAfterOpenAd = await selectById(client, 'id.freemo:id/tv_money')
+    walletBalanceAfterOpenAd =  await walletBalanceAfterOpenAd.getText()
+    walletBalanceAfterOpenAd = walletBalanceAfterOpenAd.match(/(\d+.?\d+)/)[0]
+
+    // Assert wallet balance increased
+    const balanceBefore = parseFloat(walletBalanceBeforeOpenAd)
+    const balanceAfter = parseFloat(walletBalanceAfterOpenAd)
+    const isBalanceIncrease = balanceBefore < balanceAfter
+    try {
+      assert.equal(isBalanceIncrease, true)
+      console.log('Open Video Ad Test Success =====')
+      testSummary.addResult(TEST_CASE, true)
+    } catch (ex) {
+      console.log('Assertion Failed')
+      console.log('Test Failed ====== Balance did not increase')
+      console.log('Has the ad been opened in the last 1 hour?')
+      console.log(ex)
+      testSummary.addResult(TEST_CASE, false, ex)
+    }
+    client.deleteSession()
+  } catch(ex) {
+    testSummary.addResult(TEST_CASE, false, ex)
+    client.deleteSession()
+  }
 }
 
 module.exports = openVideoAd
