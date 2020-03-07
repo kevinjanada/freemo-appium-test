@@ -12,6 +12,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "webdriverio": "^5.18.7"
+    "chalk": "^3.0.0",
+    "webdriverio": "^5.18.7",
+    "winston": "^3.2.1"
   }
 }

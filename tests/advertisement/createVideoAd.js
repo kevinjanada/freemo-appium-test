@@ -172,7 +172,7 @@ const createVideoAd = async (
       testSummary.addResult('create_video_ad', true)
     } catch (ex) {
       console.log('Create Video Ad test failed =====================')
-      testSummary.addResult('create_video_ad', false)
+      testSummary.addResult('create_video_ad', false, ex)
     }
     client.deleteSession()
   } catch(ex) {

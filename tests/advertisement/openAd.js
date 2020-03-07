@@ -95,7 +95,7 @@ const openAd = async(USER_PHONE) => {
       console.log('Test Failed ====== Balance did not increase')
       console.log('Has the ad been opened in the last 1 hour?')
       console.log(ex)
-      testSummary.addResult('open_image_ad', false)
+      testSummary.addResult('open_image_ad', false, ex)
     }
     client.deleteSession()
   } catch (ex) {

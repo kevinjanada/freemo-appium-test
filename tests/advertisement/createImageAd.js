@@ -210,7 +210,7 @@ const createImageAd = async (
       testSummary.addResult(TEST_CASE, true)
     } catch (ex) {
       console.log('Create Image Ad Test failed ====================')
-      testSummary.addResult(TEST_CASE, false)
+      testSummary.addResult(TEST_CASE, false, ex)
     }
     client.deleteSession()
   } catch(ex) {

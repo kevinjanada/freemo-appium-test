@@ -86,13 +86,13 @@ async function main () {
   await openVideoAd(USER_PHONE)
   await createImageAd(USER_PHONE, CREATE_IMAGE_AD_PARAMS)
   await createVideoAd(USER_PHONE, CREATE_VIDEO_AD_PARAMS)
-  // await submitSurvey(USER_PHONE)
+  await submitSurvey(USER_PHONE)
   await editProfile(USER_PHONE, EDIT_PROFILE_PARAMS)
   await changeLanguage(USER_PHONE)
   await withdrawRequest(USER_PHONE, TEST_ACCOUNT_NAME, TEST_ACCOUNT_NUMBER)
   await topupRequest(USER_PHONE, TOPUP_TYPES.PLATINUM, TEST_ACCOUNT_NAME, TEST_ACCOUNT_NUMBER)
 
-  console.log(testSummary.showResults())
+  testSummary.showResults()
 }
 
 main()

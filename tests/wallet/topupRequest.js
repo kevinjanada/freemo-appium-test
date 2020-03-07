@@ -168,7 +168,7 @@ const topupRequest = async (USER_PHONE, TOPUP_TYPE, TEST_ACCOUNT_NAME, TEST_ACCO
       console.log("Topup Request Test Failed =====================")
       console.log("=============================")
       console.log(ex)
-      testSummary.addResult(TEST_CASE, false)
+      testSummary.addResult(TEST_CASE, false, ex)
     }
     client.deleteSession()
   } catch(ex) {

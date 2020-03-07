@@ -79,6 +79,14 @@ const submitSurvey = async(USER_PHONE) => {
         if (text === 'Submit') {
           break
         }
+        if (text === 'Survey submitted') {
+          console.log('Survey Submit Failed ====================')
+          const err = 'There is no available survey. \nCreate a new survey or make a survey available by making changes to database'
+          console.log(err)
+          testSummary.addResult(TEST_CASE, false, err)
+          client.deleteSession()
+          return
+        }
       } catch (ex) {
         console.log(ex)
       }
@@ -126,7 +134,7 @@ const submitSurvey = async(USER_PHONE) => {
       testSummary.addResult(TEST_CASE, true)
     } catch (ex) {
       console.log('Survey Submit Failed ====================')
-      testSummary.addResult(TEST_CASE, false)
+      testSummary.addResult(TEST_CASE, false, ex)
     }
     await client.deleteSession()
   } catch(ex) {

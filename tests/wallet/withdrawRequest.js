@@ -88,7 +88,7 @@ const withdrawRequest = async (USER_PHONE, TEST_ACCOUNT_NAME, TEST_ACCOUNT_NUMBE
       console.log("Withdraw Request Test Failed ========================")
       console.log("=============================")
       console.log(ex)
-      testSummary.addResult('withdraw_request', false)
+      testSummary.addResult('withdraw_request', false, ex)
     }
     client.deleteSession()
   } catch(ex) {

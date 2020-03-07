@@ -143,7 +143,7 @@ const editProfile = async (
     } catch (ex) {
       console.log(ex)
       console.log('Edit Profile Test Failed ===================')
-      testSummary.addResult(TEST_CASE, false)
+      testSummary.addResult(TEST_CASE, false, ex)
     }
     client.deleteSession()
   } catch(ex) {

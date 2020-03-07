@@ -43,7 +43,7 @@ const changeLanguage = async (USER_PHONE) => {
     } catch(ex) {
       console.log(ex)
       console.log('Change Language Test Failed ================')
-      testSummary.addResult(TEST_CASE, false)
+      testSummary.addResult(TEST_CASE, false, ex)
     }
     client.deleteSession()
   } catch(ex) {
