@@ -1,16 +1,25 @@
+// Auth Tests
 const logOut = require('./tests/authentication/logOut')
+// Advertisement Tests
 const viewImageAds = require('./tests/advertisement/viewImageAds')
 const viewVideoAds = require('./tests/advertisement/viewVideoAds')
 const openAd = require('./tests/advertisement/openAd')
 const openVideoAd = require('./tests/advertisement/openVideoAd')
 const createImageAd = require('./tests/advertisement/createImageAd')
 const createVideoAd = require('./tests/advertisement/createVideoAd')
+// Survey Tests
 const viewSurvey = require('./tests/survey/viewSurvey')
 const submitSurvey = require('./tests/survey/submitSurvey')
+// Profile Tests
+const viewProfile = require('./tests/profile/viewProfile')
 const editProfile = require('./tests/profile/editProfile')
+const inviteFriends = require('./tests/profile/inviteFriends')
 const changeLanguage = require('./tests/profile/changeLanguage')
+const toggleLockScreen = require('./tests/profile/toggleLockScreen')
+// Wallet Tests
 const withdrawRequest = require('./tests/wallet/withdrawRequest')
 const topupRequest = require('./tests/wallet/topupRequest')
+// Test summary
 const testSummary = require('./helpers/testSummary')
 
 /**
@@ -93,10 +102,13 @@ async function main () {
   // await openVideoAd(USER_PHONE)
   // await createImageAd(USER_PHONE, CREATE_IMAGE_AD_PARAMS)
   // await createVideoAd(USER_PHONE, CREATE_VIDEO_AD_PARAMS)
-  await viewSurvey(USER_PHONE)
+  // await viewSurvey(USER_PHONE)
   // await submitSurvey(USER_PHONE)
+  // await viewProfile(USER_PHONE)
+  // await inviteFriends(USER_PHONE)
   // await editProfile(USER_PHONE, EDIT_PROFILE_PARAMS)
   // await changeLanguage(USER_PHONE)
+  await toggleLockScreen(USER_PHONE)
   // await withdrawRequest(USER_PHONE, TEST_ACCOUNT_NAME, TEST_ACCOUNT_NUMBER)
   // await topupRequest(USER_PHONE, TOPUP_TYPES.PLATINUM, TEST_ACCOUNT_NAME, TEST_ACCOUNT_NUMBER)
 
