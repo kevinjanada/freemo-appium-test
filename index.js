@@ -1,5 +1,6 @@
 const logOut = require('./tests/authentication/logOut')
 const viewImageAds = require('./tests/advertisement/viewImageAds')
+const viewVideoAds = require('./tests/advertisement/viewVideoAds')
 const openAd = require('./tests/advertisement/openAd')
 const openVideoAd = require('./tests/advertisement/openVideoAd')
 const createImageAd = require('./tests/advertisement/createImageAd')
@@ -85,7 +86,8 @@ const TEST_ACCOUNT_NUMBER = '080808080808'
 
 async function main () {
   // await logOut(USER_PHONE)
-  await viewImageAds(USER_PHONE)
+  // await viewImageAds(USER_PHONE)
+  await viewVideoAds(USER_PHONE)
   // await openAd(USER_PHONE)
   // await openVideoAd(USER_PHONE)
   // await createImageAd(USER_PHONE, CREATE_IMAGE_AD_PARAMS)
