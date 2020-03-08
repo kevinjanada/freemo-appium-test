@@ -12,7 +12,7 @@ const clearUpdateToast = require('../../helpers/clearUpdateToast')
 const assert = require('assert')
 const testSummary = require('../../helpers/testSummary')
 
-const TEST_CASE = 'withdraw_request'
+const TEST_CASE = 'WITHDRAW_REQUEST'
 
 const setup = async (USER_PHONE) => {
   let client = await goToLogin()

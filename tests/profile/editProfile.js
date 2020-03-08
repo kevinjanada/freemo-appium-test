@@ -6,7 +6,7 @@ const clearUpdateToast = require('../../helpers/clearUpdateToast')
 const assert = require('assert')
 const testSummary = require('../../helpers/testSummary')
 
-const TEST_CASE = 'edit_profile'
+const TEST_CASE = 'EDIT_PROFILE'
 
 const setup = async (USER_PHONE) => {
   let client = await goToLogin()

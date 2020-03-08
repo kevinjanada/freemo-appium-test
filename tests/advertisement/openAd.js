@@ -29,7 +29,7 @@ const setup = async (USER_PHONE) => {
   return client
 }
 
-const TEST_CASE = 'open_ad'
+const TEST_CASE = 'OPEN_AD'
 
 const openAd = async(USER_PHONE) => {
   const client = await setup(USER_PHONE)

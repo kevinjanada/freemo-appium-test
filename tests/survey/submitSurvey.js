@@ -45,7 +45,7 @@ const clearUpdateToast = require('../../helpers/clearUpdateToast')
 const assert = require('assert')
 const testSummary = require('../../helpers/testSummary')
 
-const TEST_CASE = 'submit_survey'
+const TEST_CASE = 'SUBMIT_SURVEY'
 
 const setup = async (USER_PHONE) => {
   let client = await goToLogin()
